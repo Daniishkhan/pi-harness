@@ -1,0 +1,23 @@
+{
+  "name": "@danish/pi-harness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic fresh-process workload profiles for Pi",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "pi-run": "./bin/pi-run.mjs",
+    "pi-eng": "./bin/pi-run.mjs",
+    "pi-design": "./bin/pi-run.mjs",
+    "pi-research": "./bin/pi-run.mjs",
+    "pi-learn": "./bin/pi-run.mjs",
+    "pi-doctor": "./scripts/doctor.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "doctor": "node ./scripts/doctor.mjs",
+    "install:launchers": "node ./scripts/install-launchers.mjs"
+  }
+}

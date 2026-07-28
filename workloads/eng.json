@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "eng",
+  "name": "Engineering",
+  "systemPrompt": "system-prompts/engineering.md",
+  "promptMode": "append",
+  "inheritContextFiles": true,
+  "readOnly": false,
+  "extensions": [
+    "vertex",
+    "web-access",
+    "engineering",
+    "plannotator",
+    "hashline-edit",
+    "lsp"
+  ],
+  "skills": [
+    "engineering",
+    "web-librarian"
+  ],
+  "tools": [
+    "read",
+    "bash",
+    "edit",
+    "write",
+    "grep",
+    "find",
+    "ls",
+    "web_search",
+    "fetch_content",
+    "get_search_content",
+    "assign_engineering",
+    "inspect_repo",
+    "lsp_diagnostics",
+    "lsp_hover",
+    "lsp_definition",
+    "lsp_references",
+    "lsp_symbols"
+  ],
+  "requiredCommands": [
+    "engineering",
+    "eng",
+    "plannotator",
+    "websearch"
+  ],
+  "forbiddenCommands": [],
+  "child": {
+    "extensions": [
+      "vertex"
+    ],
+    "packages": [
+      "engineering"
+    ]
+  }
+}

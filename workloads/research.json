@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "research",
+  "name": "Research",
+  "systemPrompt": "system-prompts/research.md",
+  "promptMode": "replace",
+  "inheritContextFiles": false,
+  "readOnly": true,
+  "extensions": [
+    "vertex",
+    "web-access",
+    "engineering",
+    "research"
+  ],
+  "skills": [
+    "web-librarian"
+  ],
+  "tools": [
+    "read",
+    "grep",
+    "find",
+    "ls",
+    "web_search",
+    "fetch_content",
+    "get_search_content"
+  ],
+  "requiredCommands": [
+    "research",
+    "res"
+  ],
+  "forbiddenCommands": [
+    "engineering",
+    "eng",
+    "workbench",
+    "work"
+  ],
+  "child": {
+    "extensions": [
+      "vertex"
+    ],
+    "packages": [
+      "web-access",
+      "engineering",
+      "research"
+    ]
+  }
+}
