@@ -401,13 +401,15 @@ test("a live bootstrap PID is not ready until the sandboxed Pi spawn handshake",
   );
 });
 
-test("cell image payload hashes change with harness code but ignore local installs", async (t) => {
+test("cell image payload hashes change with runtime code but ignore install-only files", async (t) => {
   const root = await mkdtemp(join(tmpdir(), "pi-cell-payload-"));
   t.after(() => rm(root, { recursive: true, force: true }));
   await writeFile(join(root, "runtime.mjs"), "export const version = 1;\n");
   const first = await computeHarnessPayloadHash(root);
   await mkdir(join(root, "node_modules", "ignored"), { recursive: true });
   await writeFile(join(root, "node_modules", "ignored", "index.js"), "ambient install\n");
+  await writeFile(join(root, ".gitignore"), "node_modules\n");
+  await writeFile(join(root, "package-lock.json"), "{}\n");
   assert.equal(await computeHarnessPayloadHash(root), first);
   await writeFile(join(root, "runtime.mjs"), "export const version = 2;\n");
   assert.notEqual(await computeHarnessPayloadHash(root), first);
