@@ -6,6 +6,7 @@ import { access, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promise
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { inspectCellHost } from "../lib/cells.mjs";
 import { createLaunchPlan } from "../lib/launch.mjs";
 import { loadCatalog, loadWorkload } from "../lib/manifests.mjs";
 import { PROFILE_IDS, resolveHarnessPaths } from "../lib/paths.mjs";
@@ -201,6 +202,15 @@ export async function runDoctor(options = {}) {
       line(stdout, "OK", `${checked.length} pinned/shared resources and ${Object.keys(catalog.skills).length} skills`);
     } catch (error) {
       failures.push(error.message);
+    }
+    if (env.PI_HARNESS_EXECUTION === "cell") {
+      try {
+        const cell = await inspectCellHost(paths, catalog);
+        line(stdout, "OK", `${cell.podmanVersion}, rootless systemd cgroups ${cell.cgroupsVersion}, linger enabled`);
+        line(stdout, "OK", `cell image ${paths.cellImage} (${cell.image.Id})`);
+      } catch (error) {
+        failures.push(`cell runtime: ${error.message}`);
+      }
     }
   }
 

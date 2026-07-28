@@ -13,11 +13,13 @@
     "pi-design": "./bin/pi-run.mjs",
     "pi-research": "./bin/pi-run.mjs",
     "pi-learn": "./bin/pi-run.mjs",
+    "pi-cell": "./bin/pi-cell.mjs",
     "pi-doctor": "./scripts/doctor.mjs"
   },
   "scripts": {
     "test": "node --test",
     "doctor": "node ./scripts/doctor.mjs",
-    "install:launchers": "node ./scripts/install-launchers.mjs"
+    "install:launchers": "node ./scripts/install-launchers.mjs",
+    "cell:build": "node ./scripts/build-cell-image.mjs"
   }
 }

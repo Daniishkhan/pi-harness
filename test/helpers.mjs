@@ -25,6 +25,7 @@ export async function harnessFixture() {
       baseAgentDir,
       profilesDir,
       sharedSkillsDir,
+      cellsDir: join(root, "cells"),
       launcherBinDir: join(root, "bin"),
       piBin: "/fixture/pi",
     },
