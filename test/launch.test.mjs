@@ -1,17 +1,20 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, rm, symlink } from "node:fs/promises";
+import { access, mkdtemp, mkdir, rm, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import {
   buildPiArgs,
   buildProfileEnvironment,
+  createLaunchPlan,
   parseInvocation,
+  probePiVersion,
   scopeSessionPassthroughArgs,
   validatePassthroughArgs,
 } from "../lib/launch.mjs";
 import { loadCatalog, loadWorkload } from "../lib/manifests.mjs";
 import { profileHome, profileSessionDir, resolveHarnessPaths } from "../lib/paths.mjs";
+import { harnessFixture } from "./helpers.mjs";
 
 test("path roots are environment-overridable and sessions are unique", () => {
   const paths = resolveHarnessPaths({
@@ -42,6 +45,68 @@ test("launcher selects profiles from argv entry or explicit pi-run argument", ()
     args: ["hello"],
   });
   assert.throws(() => parseInvocation("/bin/pi-run", ["unknown"]), /Unknown Pi workload/);
+});
+
+test("Pi version probe is a bounded direct --version invocation", async () => {
+  const env = { PATH: "/fixture/bin" };
+  let invocation;
+  const actual = await probePiVersion("/fixture/pi", env, {
+    timeoutMs: 321,
+    execFileImpl(command, args, options, callback) {
+      invocation = { command, args, options };
+      callback(null, "0.82.1\n", "");
+    },
+  });
+
+  assert.equal(actual, "0.82.1");
+  assert.equal(invocation.command, "/fixture/pi");
+  assert.deepEqual(invocation.args, ["--version"]);
+  assert.equal(invocation.options.shell, false);
+  assert.equal(invocation.options.timeout, 321);
+  assert.equal(invocation.options.maxBuffer, 16 * 1024);
+  assert.equal(invocation.options.env, env);
+});
+
+test("launch planning rejects a Pi version mismatch before preparing the profile", async (t) => {
+  const fixture = await harnessFixture();
+  t.after(fixture.cleanup);
+  let observedCommand;
+
+  await assert.rejects(
+    createLaunchPlan("eng", [], {
+      paths: fixture.paths,
+      catalog: fixture.catalog,
+      env: { PI_TEST_ENV: "1" },
+      versionProbe: async (command) => {
+        observedCommand = command;
+        return "0.82.0";
+      },
+    }),
+    /expected exactly 0\.82\.1, found 0\.82\.0.*pi-doctor.*managed Pi upgrade/s,
+  );
+
+  assert.equal(observedCommand, fixture.paths.piBin);
+  await assert.rejects(access(profileHome(fixture.paths, "eng")), { code: "ENOENT" });
+});
+
+test("launch planning proceeds only after the pinned Pi version is verified", async (t) => {
+  const fixture = await harnessFixture();
+  t.after(fixture.cleanup);
+  const calls = [];
+
+  const plan = await createLaunchPlan("eng", [], {
+    paths: fixture.paths,
+    catalog: fixture.catalog,
+    env: { PI_TEST_ENV: "1" },
+    versionProbe: async (command, env) => {
+      calls.push({ command, env });
+      return fixture.catalog.pi.version;
+    },
+  });
+
+  assert.deepEqual(calls, [{ command: fixture.paths.piBin, env: { PI_TEST_ENV: "1" } }]);
+  assert.equal(plan.command, fixture.paths.piBin);
+  assert.equal(plan.prepared.home, profileHome(fixture.paths, "eng"));
 });
 
 test("research argv is exact, explicit, and context-isolated", async () => {

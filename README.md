@@ -44,6 +44,8 @@ The layers have deliberately narrow jobs:
 
 The selected file under [workloads/](workloads/) names the extensions, skills, tools, prompt behavior, and child-process resources for one launch. The launcher starts Pi with `--no-extensions`, `--no-skills`, `--no-prompt-templates`, and `--no-approve`, then passes only that manifest's explicit resources. Attempts to override controlled isolation flags on the command line are rejected.
 
+Before creating or refreshing any profile state, every launch probes `pi --version` and requires the exact catalog version. An ambient `pi update`, PATH change, or partial fleet rollout therefore fails closed instead of silently running an untested core against the workload contracts.
+
 The separate profile home matters for subagents. A parent Pi process receives exact CLI resources, while a `pi-subagents` child discovers resources from `PI_CODING_AGENT_DIR`. Pi Harness therefore generates a minimal `settings.json` for each profile's children instead of letting them rediscover the global package set.
 
 ## Workload contracts
