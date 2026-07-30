@@ -450,7 +450,7 @@ test("a confirmed pre-create failure clears its prompt and writer lease", async 
             Config: {
               Labels: {
                 "io.pi-harness.image-schema": "1",
-                "io.pi-harness.pi-version": "0.82.1",
+                "io.pi-harness.pi-version": "0.83.0",
                 "io.pi-harness.payload-sha256": payloadHash,
               },
             },
@@ -647,7 +647,7 @@ test("a stopped cell is never auto-restarted or given a second prompt", async (t
             Config: {
               Labels: {
                 "io.pi-harness.image-schema": "1",
-                "io.pi-harness.pi-version": "0.82.1",
+                "io.pi-harness.pi-version": "0.83.0",
                 "io.pi-harness.payload-sha256": payloadHash,
               },
             },

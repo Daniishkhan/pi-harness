@@ -6,7 +6,7 @@ import { resolveHarnessPaths } from "../lib/paths.mjs";
 test("loads the strict catalog and all four workload manifests", async () => {
   const config = await loadHarnessConfiguration(resolveHarnessPaths());
   assert.deepEqual([...config.workloads.keys()], ["eng", "design", "research", "learn"]);
-  assert.equal(config.catalog.pi.version, "0.82.1");
+  assert.equal(config.catalog.pi.version, "0.83.0");
   assert.deepEqual(config.workloads.get("research").child.packages, ["web-access", "engineering", "research"]);
   assert.deepEqual(config.workloads.get("eng").child.packages, ["engineering"]);
   assert.deepEqual(config.workloads.get("design").child.packages, []);

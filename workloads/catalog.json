@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pi": {
-    "version": "0.82.1"
+    "version": "0.83.0"
   },
   "resources": {
     "vertex": {

@@ -68,7 +68,7 @@ The current Research package depends on Pi Engineering to host the pinned `pi-su
 
 ## Requirements and setup
 
-The catalog currently targets Node 24 or newer and Pi `0.82.1`; `herdr` must also be available on `PATH` (or configured with `PI_HARNESS_HERDR_BIN`). It expects the pinned packages and local Engineering/Research package links already present under the base Pi agent directory (normally `~/.pi/agent`). Authenticate once with bare `pi` and `/login` before using the harness: profile generation intentionally refuses to invent or copy missing authentication, model-store, or theme state. `pi-doctor` reports every missing path or version mismatch.
+The catalog currently targets Node 24 or newer and Pi `0.83.0`; `herdr` must also be available on `PATH` (or configured with `PI_HARNESS_HERDR_BIN`). It expects the pinned packages and local Engineering/Research package links already present under the base Pi agent directory (normally `~/.pi/agent`). Authenticate once with bare `pi` and `/login` before using the harness: profile generation intentionally refuses to invent or copy missing authentication, model-store, or theme state. `pi-doctor` reports every missing path or version mismatch.
 
 Install the launch commands into `~/.local/bin` and verify the complete harness:
 

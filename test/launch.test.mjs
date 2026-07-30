@@ -54,11 +54,11 @@ test("Pi version probe is a bounded direct --version invocation", async () => {
     timeoutMs: 321,
     execFileImpl(command, args, options, callback) {
       invocation = { command, args, options };
-      callback(null, "0.82.1\n", "");
+      callback(null, "0.83.0\n", "");
     },
   });
 
-  assert.equal(actual, "0.82.1");
+  assert.equal(actual, "0.83.0");
   assert.equal(invocation.command, "/fixture/pi");
   assert.deepEqual(invocation.args, ["--version"]);
   assert.equal(invocation.options.shell, false);
@@ -82,7 +82,7 @@ test("launch planning rejects a Pi version mismatch before preparing the profile
         return "0.82.0";
       },
     }),
-    /expected exactly 0\.82\.1, found 0\.82\.0.*pi-doctor.*managed Pi upgrade/s,
+    /expected exactly 0\.83\.0, found 0\.82\.0.*pi-doctor.*managed Pi upgrade/s,
   );
 
   assert.equal(observedCommand, fixture.paths.piBin);
