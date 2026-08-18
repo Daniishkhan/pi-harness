@@ -1,0 +1,98 @@
+{
+  "theme": "gruvbox-dark",
+  "powerline": {
+    "preset": "default",
+    "disabledSegments": [
+      "cost"
+    ],
+    "layout": {
+      "left": [
+        "custom:profile",
+        "model",
+        "thinking",
+        "path",
+        "git"
+      ]
+    },
+    "customItems": [
+      {
+        "id": "profile",
+        "position": "left",
+        "prefix": "pi",
+        "color": "accent",
+        "hideWhenMissing": false
+      }
+    ]
+  },
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "xhigh",
+  "hideThinkingBlock": true,
+  "enabledModels": [
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "openai/gpt-5.6-terra",
+    "kimi-coding/k3",
+    "deepseek/deepseek-v4-pro",
+    "zai/glm-5.3"
+  ],
+  "subagents": {
+    "defaultModel": "openai/gpt-5.6-luna",
+    "defaultThinking": "medium",
+    "agentOverrides": {
+      "delegate": {
+        "model": "openai/gpt-5.6-luna",
+        "thinking": "medium"
+      },
+      "oracle": {
+        "model": "openai/gpt-5.6-sol",
+        "thinking": "max"
+      },
+      "plan-worker": {
+        "model": "openai/gpt-5.6-terra",
+        "thinking": "xhigh",
+        "fallbackModels": [
+          "kimi-coding/k3"
+        ]
+      },
+      "planner": {
+        "model": "openai/gpt-5.6-sol",
+        "thinking": "max",
+        "fallbackModels": [
+          "kimi-coding/k3"
+        ]
+      },
+      "quality-reviewer": {
+        "model": "kimi-coding/k3",
+        "thinking": "max",
+        "fallbackModels": [
+          "openai/gpt-5.6-sol"
+        ]
+      },
+      "researcher": {
+        "model": "openai/gpt-5.6-luna",
+        "thinking": "max"
+      },
+      "reviewer": {
+        "model": "kimi-coding/k3",
+        "thinking": "high"
+      },
+      "scout": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "spec-reviewer": {
+        "model": "openai/gpt-5.6-sol",
+        "thinking": "max",
+        "fallbackModels": [
+          "kimi-coding/k3"
+        ]
+      },
+      "worker": {
+        "model": "openai/gpt-5.6-terra",
+        "thinking": "xhigh"
+      }
+    }
+  },
+  "quietStartup": true
+}

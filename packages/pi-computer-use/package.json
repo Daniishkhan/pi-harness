@@ -1,0 +1,32 @@
+{
+  "name": "pi-computer-use",
+  "version": "0.1.0",
+  "description": "A safety-first local browser automation package for Pi",
+  "private": true,
+  "type": "module",
+  "keywords": ["pi-package", "browser", "playwright", "computer-use"],
+  "pi": {
+    "extensions": ["./extensions/computer-use/index.ts"],
+    "skills": ["./skills"]
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@playwright/cli": "0.1.18"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@types/node": "24.12.4",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

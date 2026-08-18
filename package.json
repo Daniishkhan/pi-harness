@@ -1,25 +1,57 @@
 {
-  "name": "@danish/pi-harness",
-  "version": "0.1.0",
+  "name": "@daniishkhan/pi-harness",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Deterministic fresh-process workload profiles for Pi",
+  "description": "A portable, sanitized bundle of Pi extensions, skills, agents, prompts, themes, and setup defaults.",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent"
+  ],
   "engines": {
     "node": ">=24"
   },
-  "bin": {
-    "pi-run": "./bin/pi-run.mjs",
-    "pi-eng": "./bin/pi-run.mjs",
-    "pi-design": "./bin/pi-run.mjs",
-    "pi-research": "./bin/pi-run.mjs",
-    "pi-learn": "./bin/pi-run.mjs",
-    "pi-cell": "./bin/pi-cell.mjs",
-    "pi-doctor": "./scripts/doctor.mjs"
-  },
   "scripts": {
-    "test": "node --test",
-    "doctor": "node ./scripts/doctor.mjs",
-    "install:launchers": "node ./scripts/install-launchers.mjs",
-    "cell:build": "node ./scripts/build-cell-image.mjs"
+    "check": "node scripts/check.mjs && npm run typecheck && npm test",
+    "typecheck": "tsc --noEmit && tsc -p packages/pi-computer-use/tsconfig.json --noEmit",
+    "test": "node scripts/test-computer-use.mjs",
+    "install:setup": "node scripts/install.mjs"
+  },
+  "dependencies": {
+    "@playwright/cli": "0.1.18"
+  },
+  "devDependencies": {
+    "@types/node": "24.12.4",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/questionnaire.ts",
+      "./extensions/review-gate.ts",
+      "./extensions/session-forks/index.ts",
+      "./extensions/vertex-ai/index.ts",
+      "./packages/pi-computer-use/extensions/computer-use/index.ts"
+    ],
+    "skills": [
+      "./skills",
+      "./packages/pi-computer-use/skills"
+    ],
+    "prompts": [
+      "./prompts"
+    ],
+    "themes": [
+      "./themes"
+    ],
+    "subagents": {
+      "agents": [
+        "./agents"
+      ]
+    }
   }
 }

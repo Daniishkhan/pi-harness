@@ -1,4 +1,0 @@
-interface:
-  display_name: "Learning Lab"
-  short_description: "Study papers and reproduce technologies safely"
-  default_prompt: "Use $learning-lab to turn this topic into a reproducible learning lab."

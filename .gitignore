@@ -1,4 +1,27 @@
-.DS_Store
 node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Pi runtime and private state
+.pi/
+auth.json
+models-store.json
+sessions/
+state/
+missions/
+run-history.jsonl
+*.jsonl
+
+# Local configuration containing machine or account details
+settings.json
+mcp.json
+extensions/vertex-ai/vertex-ai.config.json
+
+# Browser and test artifacts
+playwright-report/
+test-results/
 coverage/
-*.log
+.test-computer-use-*/
+*.trace.zip
