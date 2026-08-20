@@ -24,9 +24,9 @@
       }
     ]
   },
-  "defaultProvider": "openai",
-  "defaultModel": "gpt-5.6-sol",
-  "defaultThinkingLevel": "xhigh",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "max",
   "hideThinkingBlock": true,
   "enabledModels": [
     "openai/gpt-5.6-luna",
@@ -48,9 +48,32 @@
         "model": "openai/gpt-5.6-sol",
         "thinking": "max"
       },
-      "plan-worker": {
+      "researcher": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "high"
+      },
+      "reviewer": {
+        "model": "kimi-coding/k3",
+        "thinking": "high"
+      },
+      "scout": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "worker": {
+        "model": "openai/gpt-5.6-terra",
+        "thinking": "xhigh"
+      },
+      "writer": {
         "model": "openai/gpt-5.6-terra",
         "thinking": "xhigh",
+        "fallbackModels": [
+          "kimi-coding/k3"
+        ]
+      },
+      "pipeline-reviewer": {
+        "model": "openai/gpt-5.6-sol",
+        "thinking": "max",
         "fallbackModels": [
           "kimi-coding/k3"
         ]
@@ -61,36 +84,6 @@
         "fallbackModels": [
           "kimi-coding/k3"
         ]
-      },
-      "quality-reviewer": {
-        "model": "kimi-coding/k3",
-        "thinking": "max",
-        "fallbackModels": [
-          "openai/gpt-5.6-sol"
-        ]
-      },
-      "researcher": {
-        "model": "openai/gpt-5.6-luna",
-        "thinking": "max"
-      },
-      "reviewer": {
-        "model": "kimi-coding/k3",
-        "thinking": "high"
-      },
-      "scout": {
-        "model": "deepseek/deepseek-v4-flash",
-        "thinking": "medium"
-      },
-      "spec-reviewer": {
-        "model": "openai/gpt-5.6-sol",
-        "thinking": "max",
-        "fallbackModels": [
-          "kimi-coding/k3"
-        ]
-      },
-      "worker": {
-        "model": "openai/gpt-5.6-terra",
-        "thinking": "xhigh"
       }
     }
   },

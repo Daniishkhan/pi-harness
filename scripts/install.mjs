@@ -23,11 +23,11 @@ for (const arg of args) {
 const pi = process.env.PI_BIN || "pi";
 const agentDir = resolve(process.env.PI_CODING_AGENT_DIR || join(homedir(), ".pi", "agent"));
 const packages = [
-  "npm:pi-web-access@0.23.0",
-  "npm:pi-subagents@0.50.0",
-  "npm:pi-powerline-footer@0.15.0",
+  "npm:pi-web-access@0.24.0",
+  "npm:pi-subagents@0.52.1",
+  "npm:pi-powerline-footer@0.15.1",
   "npm:pi-lsp@0.1.7",
-  "npm:pi-mcp-adapter@2.26.0",
+  "npm:pi-mcp-adapter@2.26.1",
   "npm:@hk_net/pi-usage-bars@0.4.2",
   "npm:pi-notify@1.4.0",
   "npm:@mobrienv/pi-tidy-tools@0.4.1",

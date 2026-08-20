@@ -1,6 +1,6 @@
 ---
 name: product-design
-description: Design modern app UIs with strong UX in Paper via the Paper MCP server. Use for designing new screens, flows, features, or redesigns for web/mobile apps — any request like "design this feature", "mock up this flow", or "improve this screen's UX" where the user journey matters. Always starts by asking the user discovery questions about intent, audience, and journey, then maps the journey and writes a design brief before touching the canvas, and runs an adversarial fresh-context review of the finished designs against the spec before delivering. Skip for pure code tasks and marketing-site work.
+description: Design or redesign product screens, features, and user flows in Paper with journey-first UX. Use for app UI design requests, not pure code or marketing sites.
 ---
 
 # Product Design

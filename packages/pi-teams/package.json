@@ -1,0 +1,16 @@
+{
+  "name": "pi-teams",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent teams for pi: mailbox + shared task board + plan-review and research protocols",
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  }
+}

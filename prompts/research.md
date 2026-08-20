@@ -1,8 +1,17 @@
 ---
-description: Deep-research a technical question with parallel research subagents and optionally capture a sourced brief in Obsidian
+description: Deep-research a technical question with the pi-teams research protocol (or a solo pi-subagents fan-out) and capture a sourced brief to Obsidian
 argument-hint: "<question>"
 ---
 
 Research this question: $@
 
-Load the available `research` skill and follow it end-to-end: scope the decision, fan out distinct evidence angles, and synthesize a sourced brief. If the Obsidian MCP server is configured and available, capture the final brief there; otherwise return it inline and note that capture was skipped.
+Follow the Deep research protocol in the pi-teams skill
+(packages/pi-teams/skills/pi-teams/SKILL.md inside this package): scope the
+question and the decision it informs, decompose into 2–4 angles, gather
+sourced findings with per-claim confidence, then synthesize the brief.
+
+If the user asked to research with agent teams: load_tool_group {group:
+"teams"} and run team_research_start → team_research_challenge →
+team_research_finish. Otherwise run the same contract solo with a
+pi-subagents scout fan-out (load_tool_group {group: "agents"} first when
+needed). Capture the final brief to Obsidian.

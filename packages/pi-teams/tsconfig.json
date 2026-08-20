@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "paths": {
+      "@earendil-works/pi-coding-agent": [
+        "../../node_modules/@earendil-works/pi-coding-agent/dist/index.d.ts"
+      ],
+      "typebox": [
+        "../../node_modules/@earendil-works/pi-coding-agent/node_modules/typebox/build/index.d.mts"
+      ]
+    }
+  },
+  "include": ["*.ts", "skills/**/*.ts", "test/**/*.ts"]
+}

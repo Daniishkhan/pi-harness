@@ -80,7 +80,8 @@ const resourceGroups = [
   ["skills", packageJson.pi?.skills],
   ["prompts", packageJson.pi?.prompts],
   ["themes", packageJson.pi?.themes],
-  ["subagent agents", packageJson.pi?.subagents?.agents],
+// Subagent agents are owned by the separate private pipeline repository; this
+// package ships none, so the manifest key is intentionally absent.
 ];
 for (const [label, paths] of resourceGroups) {
   if (!Array.isArray(paths) || paths.length === 0) {

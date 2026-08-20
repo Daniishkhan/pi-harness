@@ -14,8 +14,8 @@
   },
   "scripts": {
     "check": "node scripts/check.mjs && npm run typecheck && npm test",
-    "typecheck": "tsc --noEmit && tsc -p packages/pi-computer-use/tsconfig.json --noEmit",
-    "test": "node scripts/test-computer-use.mjs",
+    "typecheck": "tsc --noEmit && tsc -p packages/pi-computer-use/tsconfig.json --noEmit && tsc -p packages/pi-teams/tsconfig.json --noEmit",
+    "test": "node scripts/test-computer-use.mjs && node scripts/test-pi-teams.mjs",
     "install:setup": "node scripts/install.mjs"
   },
   "dependencies": {
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "24.12.4",
-    "typescript": "5.9.3"
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
@@ -33,25 +33,23 @@
   "pi": {
     "extensions": [
       "./extensions/questionnaire.ts",
-      "./extensions/review-gate.ts",
+      "./extensions/lean-startup.ts",
+      "./extensions/nodes-qwen.ts",
       "./extensions/session-forks/index.ts",
       "./extensions/vertex-ai/index.ts",
-      "./packages/pi-computer-use/extensions/computer-use/index.ts"
+      "./packages/pi-computer-use/extensions/computer-use/index.ts",
+      "./packages/pi-teams/index.ts"
     ],
     "skills": [
       "./skills",
-      "./packages/pi-computer-use/skills"
+      "./packages/pi-computer-use/skills",
+      "./packages/pi-teams/skills"
     ],
     "prompts": [
       "./prompts"
     ],
     "themes": [
       "./themes"
-    ],
-    "subagents": {
-      "agents": [
-        "./agents"
-      ]
-    }
+    ]
   }
 }
